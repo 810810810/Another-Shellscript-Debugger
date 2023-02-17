@@ -1,0 +1,40 @@
+import subprocess
+import json
+
+# Load the pre-trained machine learning model
+with open("debug_model.json", "r") as f:
+    debug_model = json.load(f)
+
+# Enter the name of the Bash script to be debugged
+script_name = input("Enter the name of the Bash script: ")
+
+# Check if the script exists
+if not os.path.isfile(script_name):
+    print(f"{script_name} does not exist.")
+    exit()
+
+# Run Shellcheck on the script
+result = subprocess.run(["shellcheck", script_name], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+# Check if Shellcheck returned any errors
+if result.returncode != 0:
+    # Extract the error messages from the Shellcheck output
+    errors = result.stderr.decode().split("\n")[:-1]
+    print(f"Found {len(errors)} errors in {script_name}.\n")
+
+    # Use the machine learning model to suggest debugging options
+    for error in errors:
+        print(error)
+
+        # Use the machine learning model to suggest debugging options based on the error message
+        debugging_suggestions = debug_model.predict(error)
+        for suggestion in debugging_suggestions:
+            print(suggestion)
+
+    # Ask the user if they want to edit the script
+    edit_script = input("Do you want to edit the script? (y/n) ")
+    if edit_script.lower() == "y":
+        # Open the script in a text editor
+        subprocess.run(["nano", script_name])
+else:
+    print(f"No errors found in {script_name}.")

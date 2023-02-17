@@ -1,0 +1,13 @@
+{
+    "Unexpected token": ["Check for missing or extra quotes, parentheses, or curly braces."],
+    "Command not found": ["Check for typos or missing commands."],
+    "Missing argument": ["Check for missing arguments to a command."],
+    "Unary operator expected": ["Check for missing spaces around operators."],
+    "Not a valid identifier": ["Check for typos in variable names."],
+    "Use $(command) instead of backticks": ["Replace any instances of `command` with $(command)."],
+    "Add double quotes to prevent globbing and word splitting": ["Add double quotes around any variable or command substitutions that contain spaces or special characters."],
+    "Consider using `grep -E` instead": ["Replace any instances of grep -E with egrep."],
+    "Prefer $(foo) over `foo`": ["Replace any instances of `foo` with $(foo)."],
+    "Cannot open directory": ["Make sure that the directory exists and that you have permission to access it."],
+    "Unexpected end of file": ["Check for missing or extra closing statements, such as quotes or braces."]
+}
